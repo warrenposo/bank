@@ -113,32 +113,45 @@
     filter: drop-shadow(0 0 10px hsl(var(--game-plane))) drop-shadow(0 0 20px hsl(var(--game-plane)));
   }
 
-  @keyframes fly {
-    0%, 100% { transform: translateY(0) rotate(-5deg); }
-    50% { transform: translateY(-10px) rotate(-3deg); }
+  @keyframes fly-smooth {
+    0%, 100% { transform: translateY(0); }
+    25% { transform: translateY(-3px); }
+    50% { transform: translateY(-1px); }
+    75% { transform: translateY(-2px); }
   }
 
   @keyframes pulse-glow {
     0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
+    50% { opacity: 0.8; }
   }
 
-  @keyframes crash {
-    0% { transform: rotate(-5deg) scale(1); opacity: 1; }
-    50% { transform: rotate(45deg) scale(0.8) translateY(50px); opacity: 0.8; }
-    100% { transform: rotate(90deg) scale(0.5) translateY(150px); opacity: 0; }
+  @keyframes crash-fast {
+    0% { transform: rotate(-15deg) scale(1); opacity: 1; }
+    30% { transform: rotate(45deg) scale(0.9) translateY(20px); opacity: 0.9; }
+    60% { transform: rotate(120deg) scale(0.6) translateY(60px) translateX(-20px); opacity: 0.5; }
+    100% { transform: rotate(180deg) scale(0.3) translateY(120px) translateX(-40px); opacity: 0; }
   }
 
-  .animate-fly {
-    animation: fly 2s ease-in-out infinite;
+  @keyframes scale-in {
+    0% { transform: scale(0.5); opacity: 0; }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  .animate-fly-smooth {
+    animation: fly-smooth 1s ease-in-out infinite;
   }
 
   .animate-pulse-glow {
-    animation: pulse-glow 1.5s ease-in-out infinite;
+    animation: pulse-glow 1s ease-in-out infinite;
   }
 
-  .animate-crash {
-    animation: crash 1s ease-in forwards;
+  .animate-crash-fast {
+    animation: crash-fast 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.4s ease-out forwards;
   }
 
   .multiplier-badge {

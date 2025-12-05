@@ -51,10 +51,10 @@ export const useGame = (adminCrashPoint?: number) => {
 
     let multiplier = 1.0;
     const increment = 0.01;
-    const speed = 50;
+    const speed = 30; // Faster update rate (was 50ms)
 
     intervalRef.current = setInterval(() => {
-      multiplier += increment * (1 + multiplier * 0.1);
+      multiplier += increment * (1 + multiplier * 0.15); // Faster acceleration
       
       if (multiplier >= crashPointRef.current) {
         if (intervalRef.current) clearInterval(intervalRef.current);
@@ -85,7 +85,7 @@ export const useGame = (adminCrashPoint?: number) => {
             roundId: generateRoundId(),
           }));
           setUserBet(null);
-        }, 3000);
+        }, 2500); // Faster round transitions (was 3000ms)
 
       } else {
         setGameState(prev => ({
@@ -97,7 +97,7 @@ export const useGame = (adminCrashPoint?: number) => {
   }, [adminCrashPoint]);
 
   useEffect(() => {
-    const waitTime = gameState.status === 'waiting' ? 5000 : null;
+    const waitTime = gameState.status === 'waiting' ? 4000 : null; // Faster waiting time (was 5000ms)
     
     if (waitTime && gameState.status === 'waiting') {
       const timeout = setTimeout(startRound, waitTime);

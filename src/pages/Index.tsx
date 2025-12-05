@@ -11,7 +11,7 @@ import { DepositModal } from '@/components/game/DepositModal';
 
 const Index = () => {
   const navigate = useNavigate();
-  const { user, profile, loading, signOut } = useAuth();
+  const { user, profile, loading, signOut, isAdmin } = useAuth();
   const [depositOpen, setDepositOpen] = useState(false);
   
   const { gameState, roundHistory, userBalance, userBet, placeBet, cashOut, deposit } = useGame();
@@ -23,7 +23,11 @@ const Index = () => {
     if (!loading && !user) {
       navigate('/auth');
     }
-  }, [loading, user, navigate]);
+    // Redirect admins to admin dashboard
+    if (!loading && user && isAdmin) {
+      navigate('/admin');
+    }
+  }, [loading, user, isAdmin, navigate]);
 
   if (loading) {
     return (
