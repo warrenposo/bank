@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 222 47% 6%;
+    --foreground: 200 100% 97%;
+
+    --card: 222 47% 9%;
+    --card-foreground: 200 100% 97%;
+
+    --popover: 222 47% 9%;
+    --popover-foreground: 200 100% 97%;
+
+    --primary: 187 100% 50%;
+    --primary-foreground: 222 47% 6%;
+
+    --secondary: 222 47% 15%;
+    --secondary-foreground: 200 100% 97%;
+
+    --muted: 222 30% 18%;
+    --muted-foreground: 215 20% 55%;
+
+    --accent: 187 100% 40%;
+    --accent-foreground: 222 47% 6%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 76% 45%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 0%;
+
+    --border: 222 30% 20%;
+    --input: 222 30% 20%;
+    --ring: 187 100% 50%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 222 47% 8%;
+    --sidebar-foreground: 200 100% 97%;
+    --sidebar-primary: 187 100% 50%;
+    --sidebar-primary-foreground: 222 47% 6%;
+    --sidebar-accent: 222 47% 15%;
+    --sidebar-accent-foreground: 200 100% 97%;
+    --sidebar-border: 222 30% 20%;
+    --sidebar-ring: 187 100% 50%;
+
+    /* Custom game colors */
+    --game-bg: 222 50% 4%;
+    --game-plane: 0 85% 55%;
+    --game-multiplier: 187 100% 60%;
+    --neon-glow: 187 100% 50%;
+  }
+
+  .dark {
+    --background: 222 47% 6%;
+    --foreground: 200 100% 97%;
+    --card: 222 47% 9%;
+    --card-foreground: 200 100% 97%;
+    --popover: 222 47% 9%;
+    --popover-foreground: 200 100% 97%;
+    --primary: 187 100% 50%;
+    --primary-foreground: 222 47% 6%;
+    --secondary: 222 47% 15%;
+    --secondary-foreground: 200 100% 97%;
+    --muted: 222 30% 18%;
+    --muted-foreground: 215 20% 55%;
+    --accent: 187 100% 40%;
+    --accent-foreground: 222 47% 6%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 222 30% 20%;
+    --input: 222 30% 20%;
+    --ring: 187 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .font-display {
+    font-family: 'Orbitron', sans-serif;
+  }
+}
+
+@layer utilities {
+  .neon-text {
+    text-shadow: 0 0 10px hsl(var(--neon-glow)), 0 0 20px hsl(var(--neon-glow)), 0 0 40px hsl(var(--neon-glow));
+  }
+
+  .neon-border {
+    box-shadow: 0 0 5px hsl(var(--neon-glow)), 0 0 10px hsl(var(--neon-glow)), inset 0 0 5px hsl(var(--neon-glow) / 0.3);
+  }
+
+  .game-gradient {
+    background: radial-gradient(ellipse at center bottom, hsl(222 50% 12%) 0%, hsl(var(--game-bg)) 70%);
+  }
+
+  .plane-glow {
+    filter: drop-shadow(0 0 10px hsl(var(--game-plane))) drop-shadow(0 0 20px hsl(var(--game-plane)));
+  }
+
+  @keyframes fly {
+    0%, 100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-10px) rotate(-3deg); }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+
+  @keyframes crash {
+    0% { transform: rotate(-5deg) scale(1); opacity: 1; }
+    50% { transform: rotate(45deg) scale(0.8) translateY(50px); opacity: 0.8; }
+    100% { transform: rotate(90deg) scale(0.5) translateY(150px); opacity: 0; }
+  }
+
+  .animate-fly {
+    animation: fly 2s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 1.5s ease-in-out infinite;
+  }
+
+  .animate-crash {
+    animation: crash 1s ease-in forwards;
+  }
+
+  .multiplier-badge {
+    @apply px-2 py-1 rounded text-xs font-bold font-display;
+  }
+
+  .multiplier-low {
+    @apply bg-cyan-500/20 text-cyan-400 border border-cyan-500/30;
+  }
+
+  .multiplier-medium {
+    @apply bg-purple-500/20 text-purple-400 border border-purple-500/30;
+  }
+
+  .multiplier-high {
+    @apply bg-orange-500/20 text-orange-400 border border-orange-500/30;
+  }
+}
